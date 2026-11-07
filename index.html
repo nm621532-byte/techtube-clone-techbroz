@@ -1,0 +1,73 @@
+<!doctype html>
+<html lang="en" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'; img-src 'self' blob: data:; media-src 'self' blob:; style-src 'self' 'unsafe-inline'; script-src 'self'; connect-src 'self'; worker-src 'self'; manifest-src 'self'; object-src 'none'; base-uri 'self'">
+<title>TechTube</title>
+<meta name="description" content="TechTube: a YouTube-style video app you can install on your phone. Your data stays on your device.">
+<meta name="theme-color" content="#0b0d14" id="themeMeta">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon.svg" type="image/svg+xml">
+<link rel="apple-touch-icon" href="icons/icon-192.png">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <linearGradient id="ttg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#2ee6c5"/><stop offset="1" stop-color="#7c5cff"/></linearGradient>
+    <symbol id="logo" viewBox="0 0 64 64"><rect width="64" height="64" rx="16" fill="url(#ttg)"/><path d="M25 19 L47 32 L25 45 Z" fill="#fff"/></symbol>
+  </defs>
+</svg>
+
+<header class="topbar">
+  <button id="menuBtn" class="icon-btn" aria-label="Toggle menu">&#9776;</button>
+  <a href="#/" class="brand" aria-label="TechTube home"><svg class="logo" width="30" height="30"><use href="#logo"/></svg><span class="brand-name">TechTube</span></a>
+  <form id="searchForm" class="search" role="search">
+    <input id="searchInput" type="search" placeholder="Search" aria-label="Search" autocomplete="off">
+    <button type="submit" class="search-btn" aria-label="Search">&#128269;</button>
+  </form>
+  <div class="top-actions">
+    <a href="#/upload" class="icon-btn" aria-label="Upload a video">+</a>
+    <button id="avatarBtn" class="avatar" aria-label="Your account" type="button">?</button>
+  </div>
+</header>
+
+<nav id="sidebar" class="sidebar" aria-label="Main">
+  <a href="#/" data-nav="home"><span class="ico">&#8962;</span>Home</a>
+  <a href="#/shorts" data-nav="shorts"><span class="ico">&#9654;</span>Shorts</a>
+  <a href="#/library" data-nav="library"><span class="ico">&#9776;</span>Library</a>
+  <a href="#/upload" data-nav="upload"><span class="ico">&#11014;</span>Upload</a>
+  <a href="#/studio" data-nav="studio"><span class="ico">&#9881;</span>Studio</a>
+  <a href="#/settings" data-nav="settings"><span class="ico">&#9965;</span>Settings</a>
+  <div class="side-title">Subscriptions</div>
+  <div id="subList" class="side-subs"></div>
+</nav>
+
+<main id="view" class="view" tabindex="-1"></main>
+
+<nav id="bottomnav" class="bottomnav" aria-label="Quick">
+  <a href="#/" data-nav="home"><span class="ico">&#8962;</span>Home</a>
+  <a href="#/shorts" data-nav="shorts"><span class="ico">&#9654;</span>Shorts</a>
+  <a href="#/upload" data-nav="upload" class="plus"><span class="ico">+</span>Upload</a>
+  <a href="#/library" data-nav="library"><span class="ico">&#9776;</span>Library</a>
+  <a href="#/studio" data-nav="studio"><span class="ico">&#9881;</span>Studio</a>
+</nav>
+
+<div id="authGate" class="gate" hidden>
+  <form id="authForm" class="gate-card">
+    <svg class="logo" width="56" height="56"><use href="#logo"/></svg>
+    <h1>Welcome to TechTube</h1>
+    <p class="muted" id="authHint">Make a local account on this phone. Your history, likes and comments stay on this device.</p>
+    <label>Display name<input id="authName" name="name" required maxlength="24" autocomplete="username"></label>
+    <label>Password (6+ characters)<input id="authPass" name="pass" type="password" required minlength="6" maxlength="128" autocomplete="current-password"></label>
+    <p id="authError" class="error" role="alert"></p>
+    <button class="btn primary" type="submit" id="authSubmit">Create account</button>
+    <button class="btn link" type="button" id="authSwitch">I already have an account</button>
+  </form>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script src="app.js" defer></script>
+</body>
+</html>
